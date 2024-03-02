@@ -6,7 +6,11 @@ WHERE payment.payment_method_id = payment_method.id
   AND payment.payer IS NULL
 ;
 
-
+select
+    metadata -> 'settlement'
+from tenant
+where type = 'SUB_TENANT'
+;
 
 -------- delete a field
 UPDATE tenant
@@ -14,9 +18,8 @@ SET metadata = jsonb_set(metadata, '{settlements}', '[]', true)
 WHERE type = 'SUB_TENANT'
 ;
 
-SELECT jsonb_strip_nulls(metadata - 'settlement')
-FROM tenant
-WHERE type = 'SUB_TENANT'
+UPDATE tenant
+SET metadata = metadata - 'settlement'
 ;
 
 
