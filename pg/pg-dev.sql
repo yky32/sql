@@ -16,6 +16,8 @@ WHERE payment.payment_method_id = payment_method.id
 
 -- fuzzy tuning
 select
+    p.hash,
+    similarity(lower(p.hash), 'f2b8cbaac5fefbbd2bd10c5e'),
     CAST(p.metadata -> 'embosserName' as text),
     CAST(p.payer -> 'email' as text),
     p.metadata -> 'embosserName',

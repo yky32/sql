@@ -49,3 +49,26 @@ WHERE tenant_id = 7142615941312937984
   AND mode = 'LIVE'
   and p.create_dt >= '2024-01-01'
   and p.create_dt <= '2024-01-31'
+
+------
+select
+    p.id,
+    p.hash,
+    p.amount,
+    p.mode,
+    p.status,
+    p.transaction_type,
+    p.metadata -> 'tenantContext' -> 'name' ->> 'en' as store_name,
+    p.metadata ->> 'embosserName' as embosser_name,
+    p.type,
+    p.create_dt,
+    p.update_dt
+from payment p
+WHERE tenant_id = 7142615941312937984
+  AND transaction_type = 'SALES'
+  AND currency = 'JPY'
+  AND mode = 'LIVE'
+  and p.create_dt >= '2023-12-31 15:00:00'
+  and p.create_dt <= '2024-01-31 15:00:00'
+  and p.status in ('REFUNDED')
+;
