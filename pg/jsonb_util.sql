@@ -1,3 +1,6 @@
+-- Functions
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
 --- 26Feb Deployed
 UPDATE payment
 SET payer = payment_method.payer
