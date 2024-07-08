@@ -40,8 +40,3 @@ SET metadata = metadata - 'settlement'
 UPDATE tenant t
 SET metadata = jsonb_set(t.metadata, '{productSetting, paymentGatewaySetting, webhookUrls}', '[]', true)
 WHERE t.key != 'tk_953903f3b1adbb850b53f0a70b1292e2';
-
-
-UPDATE tenant t
-SET metadata = metadata - '{productSetting, paymentGatewaySetting, webhookUrls}'
-WHERE condition;
