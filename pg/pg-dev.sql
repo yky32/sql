@@ -1,3 +1,6 @@
+-- PG 15
+ALTER DATABASE uaa OWNER TO uaa;
+
 select
     p.id,
     p.metadata,
